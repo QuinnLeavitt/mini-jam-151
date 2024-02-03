@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba520dccxesr6"]
+[gd_scene load_steps=6 format=3 uid="uid://ba520dccxesr6"]
 
 [ext_resource type="Script" path="res://level/game.gd" id="1_u5gi3"]
 [ext_resource type="PackedScene" uid="uid://b2g1y055i5j2m" path="res://player/player.tscn" id="2_c2ihd"]
 [ext_resource type="AudioStream" uid="uid://blgibx1xcyoxx" path="res://assets/audio/zapsplat_nature_fire_flames_blow_hard_very_short_001_90299.mp3" id="3_a1eus"]
 [ext_resource type="AudioStream" uid="uid://durfv0yx3j1ut" path="res://assets/audio/western_dragon_theme.wav" id="4_w204w"]
+[ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/fodder_dragon.tscn" id="5_vgjgg"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5gi3")
 
 [node name="Player" parent="." instance=ExtResource("2_c2ihd")]
-position = Vector2(502, 415)
+position = Vector2(256, 820)
 
 [node name="FireBlasts" type="Node2D" parent="."]
 
@@ -21,3 +22,6 @@ max_polyphony = 10
 [node name="DragonTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_w204w")
 volume_db = -5.0
+
+[node name="FodderDragon" parent="." instance=ExtResource("5_vgjgg")]
+position = Vector2(267, 84)

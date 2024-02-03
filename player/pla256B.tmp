@@ -43,7 +43,7 @@ script = ExtResource("1_ksiqp")
 [node name="dragonAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_6kvuf")
-frame_progress = 0.588405
+frame_progress = 0.230074
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.75, 0.75)
