@@ -1,6 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2g1y055i5j2m"]
+[gd_scene load_steps=8 format=3 uid="uid://b2g1y055i5j2m"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ksiqp"]
+[ext_resource type="Texture2D" uid="uid://bi2m1ychdfnk0" path="res://assets/sprites/flying_dragon-red.png" id="2_oylpq"]
 
-[node name="Player" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5plub"]
+atlas = ExtResource("2_oylpq")
+region = Rect2(0, 0, 191, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikjb7"]
+atlas = ExtResource("2_oylpq")
+region = Rect2(191, 0, 191, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e1u7"]
+atlas = ExtResource("2_oylpq")
+region = Rect2(382, 0, 191, 161)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6kvuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5plub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikjb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e1u7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74eb1"]
+radius = 83.0963
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ksiqp")
+
+[node name="dragonAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6kvuf")
+frame_progress = 0.230074
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_74eb1")
+
+[node name="Mouth" type="Node2D" parent="."]
+position = Vector2(1, -55)

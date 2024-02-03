@@ -1,28 +1,40 @@
 extends CharacterBody2D
 
+signal fire_breath(breathe_fire)
 
+@export var fire_rate := 0.15
+@onready var mouth = $Mouth
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var shoot_cd = false
+var projectile_scene = preload("res://player/fire_projectile.tscn")
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+func _physics_process(_delta):
+	if Input.is_action_pressed("shoot"):
+		if !shoot_cd:
+			shoot_cd = true
+			breathe_fire()
+			await get_tree().create_timer(fire_rate).timeout
+			shoot_cd = false
+	var yDirection = Input.get_axis("up", "down")
+	if yDirection:
+		velocity.y = yDirection * SPEED
+	else:
+		velocity.y = move_toward(velocity.x, 0, SPEED)
+	var xDirection = Input.get_axis("left", "right")
+	if xDirection:
+		velocity.x = xDirection * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	$dragonAnimation.play()
+	var animationSpeed = $dragonAnimation.get_playing_speed()
+	if velocity.x == 0 && velocity.y == 0:
+		$dragonAnimation.play(&"", animationSpeed/1.5, false)
+	else:
+		$dragonAnimation.play(&"", animationSpeed, false)
 	move_and_slide()
+
+func breathe_fire():
+	var projectile = projectile_scene.instantiate()
+	projectile.global_position = mouth.global_position
+	projectile.rotation = rotation
+	emit_signal("fire_breath", projectile)
