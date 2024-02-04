@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqmbaui4xwkdc"]
+
+[ext_resource type="Texture2D" uid="uid://bst1f3s6ounup" path="res://assets/sprites/cloud1.png" id="1_20vbt"]
+[ext_resource type="Texture2D" uid="uid://6nn048ofc6f6" path="res://assets/sprites/cloud2.png" id="2_5hsgc"]
+[ext_resource type="Texture2D" uid="uid://bsbu5flukyln6" path="res://assets/sprites/cloud3.png" id="3_fjfaa"]
+
+[node name="Background" type="Node2D"]
+
+[node name="CloudsFront" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(284, -231)
+amount = 3
+lifetime = 5.0
+preprocess = 140.0
+speed_scale = 0.3
+texture = ExtResource("1_20vbt")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+gravity = Vector2(0, 800)
+
+[node name="CloudsMiddle" type="CPUParticles2D" parent="."]
+z_index = -50
+position = Vector2(284, -231)
+amount = 4
+lifetime = 5.0
+preprocess = 140.0
+speed_scale = 0.15
+texture = ExtResource("2_5hsgc")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+gravity = Vector2(0, 800)
+
+[node name="CloudsBack" type="CPUParticles2D" parent="."]
+z_index = -100
+position = Vector2(284, -231)
+amount = 6
+lifetime = 5.0
+preprocess = 140.0
+speed_scale = 0.1
+texture = ExtResource("3_fjfaa")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+gravity = Vector2(0, 800)

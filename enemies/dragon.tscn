@@ -1,20 +1,20 @@
 [gd_scene load_steps=8 format=3 uid="uid://beautbsqjsih4"]
 
 [ext_resource type="Script" path="res://enemies/dragon.gd" id="1_amsbs"]
-[ext_resource type="Texture2D" uid="uid://bi2m1ychdfnk0" path="res://assets/sprites/flying_dragon-red.png" id="2_qa2i7"]
+[ext_resource type="Texture2D" uid="uid://c75xfnjpuaeti" path="res://assets/sprites/flying_dragon-red.png" id="2_qa2i7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t42ry"]
 radius = 6.21289
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cafmk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mjix"]
 atlas = ExtResource("2_qa2i7")
 region = Rect2(0, 0, 191, 161)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsyoy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_olq0u"]
 atlas = ExtResource("2_qa2i7")
 region = Rect2(191, 0, 191, 161)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4w6ou"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_avt2i"]
 atlas = ExtResource("2_qa2i7")
 region = Rect2(382, 0, 191, 161)
 
@@ -22,13 +22,13 @@ region = Rect2(382, 0, 191, 161)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cafmk")
+"texture": SubResource("AtlasTexture_0mjix")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qsyoy")
+"texture": SubResource("AtlasTexture_olq0u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4w6ou")
+"texture": SubResource("AtlasTexture_avt2i")
 }],
 "loop": true,
 "name": &"default",

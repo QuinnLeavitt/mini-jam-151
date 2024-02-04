@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6fh42kcal3s4"]
+
+[ext_resource type="Script" path="res://level/start_menu.gd" id="1_8y67r"]
+[ext_resource type="PackedScene" uid="uid://cqmbaui4xwkdc" path="res://level/Background.tscn" id="2_0j65u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lr1ul"]
+font_size = 96
+font_color = Color(0.984314, 0.627451, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8y67r")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dragon's Folly"
+label_settings = SubResource("LabelSettings_lr1ul")
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.328
+anchor_top = 0.38
+anchor_right = 0.62
+anchor_bottom = 0.444
+offset_left = -0.12001
+offset_top = 0.199982
+offset_right = 0.200012
+offset_bottom = -0.240021
+text = "PLAY"
+
+[node name="Background" parent="." instance=ExtResource("2_0j65u")]
+position = Vector2(132, 80)
+
+[connection signal="pressed" from="StartButton" to="." method="_on_button_pressed"]

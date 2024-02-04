@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c75xfnjpuaeti"
-path="res://.godot/imported/flying_dragon-red.png-e3a0c46bf254633eab9d5ea8aa68a782.ctex"
+uid="uid://5rgw0njnw6fq"
+path="res://.godot/imported/player_life.png-c13541edbe799084a5fb41b1a8afedcc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/flying_dragon-red.png"
-dest_files=["res://.godot/imported/flying_dragon-red.png-e3a0c46bf254633eab9d5ea8aa68a782.ctex"]
+source_file="res://assets/sprites/player_life.png"
+dest_files=["res://.godot/imported/player_life.png-c13541edbe799084a5fb41b1a8afedcc.ctex"]
 
 [params]
 

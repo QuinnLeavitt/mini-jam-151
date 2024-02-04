@@ -36,6 +36,7 @@ animations = [{
 speed = 150
 projectile_count = 2
 cost = 2
+point_value = 200
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 3)

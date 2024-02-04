@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://duyvryr6kqgwy"]
+
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_yumpk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsi1b"]
+font_size = 48
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yumpk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.006
+anchor_top = 0.5
+anchor_right = 0.987
+anchor_bottom = 0.643
+offset_left = 0.258
+offset_top = 2.0
+offset_right = 0.05896
+offset_bottom = -0.280029
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Quit"
+
+[node name="Paused" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.335
+anchor_top = 0.412
+anchor_right = 0.678
+anchor_bottom = 0.482
+offset_left = 0.0950012
+offset_top = 0.47998
+offset_right = -0.154022
+offset_bottom = 0.279968
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_fsi1b")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]

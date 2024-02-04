@@ -8,6 +8,8 @@ signal died
 @export var SPEED = 300.0
 
 @onready var mouth = $Mouth
+@onready var sprite = $DragonAnimation
+@onready var cshape = $CollisionShape2D
 
 var shoot_cd = false
 var is_alive = true
@@ -16,6 +18,7 @@ var is_invincible = false
 var projectile_scene = preload("res://player/fire_projectile.tscn")
 
 func _physics_process(_delta):
+	if !is_alive: return
 	if Input.is_action_pressed("shoot"):
 		if !shoot_cd:
 			shoot_cd = true
@@ -28,12 +31,12 @@ func _physics_process(_delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	$dragonAnimation.play()
-	var animationSpeed = $dragonAnimation.get_playing_speed()
+	$DragonAnimation.play()
+	var animationSpeed = $DragonAnimation.get_playing_speed()
 	if velocity.x == 0 && velocity.y == 0:
-		$dragonAnimation.play(&"", animationSpeed/1.5, false)
+		$DragonAnimation.play(&"", animationSpeed/1.5, false)
 	else:
-		$dragonAnimation.play(&"", animationSpeed, false)
+		$DragonAnimation.play(&"", animationSpeed, false)
 	move_and_slide()
 
 func breathe_fire():
@@ -46,5 +49,13 @@ func breathe_fire():
 func die():
 	if (is_alive==true && !is_invincible):
 		is_alive = false
+		sprite.visible = false
+		cshape.set_deferred("disabled", true)
 		emit_signal("died")
-		queue_free()
+
+func respawn(pos):
+	if is_alive == false:
+		is_alive = true
+		global_position = pos
+		sprite.visible = true
+		cshape.set_deferred("disabled", false)

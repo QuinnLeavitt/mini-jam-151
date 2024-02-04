@@ -1,17 +1,17 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2g1y055i5j2m"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ksiqp"]
-[ext_resource type="Texture2D" uid="uid://bi2m1ychdfnk0" path="res://assets/sprites/flying_dragon-red.png" id="2_oylpq"]
+[ext_resource type="Texture2D" uid="uid://c75xfnjpuaeti" path="res://assets/sprites/flying_dragon-red.png" id="2_oylpq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5plub"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiund"]
 atlas = ExtResource("2_oylpq")
 region = Rect2(0, 0, 191, 161)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ikjb7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b0gr"]
 atlas = ExtResource("2_oylpq")
 region = Rect2(191, 0, 191, 161)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2e1u7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmn8d"]
 atlas = ExtResource("2_oylpq")
 region = Rect2(382, 0, 191, 161)
 
@@ -19,13 +19,13 @@ region = Rect2(382, 0, 191, 161)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5plub")
+"texture": SubResource("AtlasTexture_wiund")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ikjb7")
+"texture": SubResource("AtlasTexture_7b0gr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2e1u7")
+"texture": SubResource("AtlasTexture_rmn8d")
 }],
 "loop": true,
 "name": &"default",
@@ -40,7 +40,7 @@ scale = Vector2(0.75, 0.75)
 collision_mask = 6
 script = ExtResource("1_ksiqp")
 
-[node name="dragonAnimation" type="AnimatedSprite2D" parent="."]
+[node name="DragonAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_6kvuf")
 frame_progress = 0.588405

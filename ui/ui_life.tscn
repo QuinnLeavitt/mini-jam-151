@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blbqnlsjicap5"]
+
+[ext_resource type="Texture2D" uid="uid://5rgw0njnw6fq" path="res://assets/sprites/player_life.png" id="1_454p4"]
+
+[node name="UiLife" type="TextureRect"]
+offset_right = 144.0
+offset_bottom = 98.0
+texture = ExtResource("1_454p4")

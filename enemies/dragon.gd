@@ -1,13 +1,15 @@
 class_name Enemy extends Area2D
 
 signal fire_breath(breathe_fire)
-signal died(dragon)
+signal died(points)
+signal escaped(points)
 
 @export var speed = 250
 @export var fire_rate = 3
 @export var health = 50
 @export var projectile_count = 1
 @export var cost = 1
+@export var point_value = 100
 
 @onready var mouth = $Mouth
 
@@ -27,13 +29,13 @@ func _process(delta):
 		shoot_cd = false
 	
 func breathe_fire():
-	var component_degrees = (mouth.rotation_degrees/projectile_count)/2
-	var cumulative_degrees = 90
 	if projectile_count > 1:
 		projectile_count = randi_range(projectile_count-2, projectile_count)
+	var component_degrees = (mouth.rotation_degrees/projectile_count)/2
+	var cumulative_degrees = 90
 	for p in projectile_count:
 		var projectile = projectile_scene.instantiate()
-		print(projectile)
+		#print(projectile)
 		cumulative_degrees += component_degrees
 		projectile.global_position = mouth.global_position
 		projectile.rotation_degrees = cumulative_degrees
@@ -47,15 +49,14 @@ func take_damage(damage):
 
 func die():
 	if (is_alive==true):
-		emit_signal("died", self)
+		emit_signal("died", point_value)
 		queue_free()
 
 func _on_body_entered(body):
 	if body is Player:
 		var player_body = body
-		print("player ded")
 		player_body.die()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	print("enemy deleted")
+	emit_signal("escaped", point_value)
 	queue_free()
