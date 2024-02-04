@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://beautbsqjsih4"]
+
+[ext_resource type="Script" path="res://enemies/dragon.gd" id="1_amsbs"]
+[ext_resource type="Texture2D" uid="uid://bi2m1ychdfnk0" path="res://assets/sprites/flying_dragon-red.png" id="2_qa2i7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t42ry"]
+radius = 6.21289
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cafmk"]
+atlas = ExtResource("2_qa2i7")
+region = Rect2(0, 0, 191, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsyoy"]
+atlas = ExtResource("2_qa2i7")
+region = Rect2(191, 0, 191, 161)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w6ou"]
+atlas = ExtResource("2_qa2i7")
+region = Rect2(382, 0, 191, 161)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l6822"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cafmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsyoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w6ou")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Dragon" type="Area2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_amsbs")
+speed = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_t42ry")
+
+[node name="FodderDragAnim" type="AnimatedSprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_l6822")
+frame_progress = 0.175399
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -42)
+
+[node name="Mouth" type="Node2D" parent="."]
+position = Vector2(0, 40)
+rotation = 3.14159
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

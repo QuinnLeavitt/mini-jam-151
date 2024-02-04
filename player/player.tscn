@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_74eb1"]
-radius = 83.0963
+radius = 49.9046
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
@@ -46,9 +46,10 @@ sprite_frames = SubResource("SpriteFrames_6kvuf")
 frame_progress = 0.588405
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.66667)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("CircleShape2D_74eb1")
 
 [node name="Mouth" type="Node2D" parent="." groups=["player"]]
-position = Vector2(0, -35)
+position = Vector2(0, -50)
 scale = Vector2(0.75, 0.75)

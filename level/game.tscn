@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba520dccxesr6"]
+[gd_scene load_steps=10 format=3 uid="uid://ba520dccxesr6"]
 
 [ext_resource type="Script" path="res://level/game.gd" id="1_u5gi3"]
 [ext_resource type="PackedScene" uid="uid://b2g1y055i5j2m" path="res://player/player.tscn" id="2_c2ihd"]
-[ext_resource type="AudioStream" uid="uid://blgibx1xcyoxx" path="res://assets/audio/zapsplat_nature_fire_flames_blow_hard_very_short_001_90299.mp3" id="3_a1eus"]
+[ext_resource type="AudioStream" uid="uid://blgibx1xcyoxx" path="res://assets/audio/flames_blow_hard_001.mp3" id="3_a1eus"]
 [ext_resource type="AudioStream" uid="uid://durfv0yx3j1ut" path="res://assets/audio/western_dragon_theme.wav" id="4_w204w"]
-[ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/fodder_dragon.tscn" id="5_vgjgg"]
+[ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/dragon.tscn" id="5_vgjgg"]
+[ext_resource type="PackedScene" uid="uid://ca7uehn8wp01v" path="res://enemies/twin_headed_dragon.tscn" id="6_xgvpx"]
+[ext_resource type="PackedScene" uid="uid://b1m2fpc8bvcpk" path="res://enemies/legendary_dragon.tscn" id="7_hh3nv"]
+[ext_resource type="PackedScene" uid="uid://fvtaawa5m43" path="res://enemies/elite_twin_headed_dragon.tscn" id="8_5k3te"]
+[ext_resource type="AudioStream" uid="uid://du8rqfa8v1l4y" path="res://assets/audio/ka_ching_001.mp3" id="9_al1g0"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5gi3")
+enemy_scenes = Array[PackedScene]([ExtResource("5_vgjgg"), ExtResource("6_xgvpx"), ExtResource("8_5k3te"), ExtResource("7_hh3nv")])
 
 [node name="Player" parent="." instance=ExtResource("2_c2ihd")]
 position = Vector2(256, 820)
@@ -23,5 +28,20 @@ max_polyphony = 10
 stream = ExtResource("4_w204w")
 volume_db = -5.0
 
-[node name="FodderDragon" parent="." instance=ExtResource("5_vgjgg")]
-position = Vector2(267, 84)
+[node name="PlayerSpawnPos" type="Node2D" parent="."]
+position = Vector2(256, 820)
+
+[node name="Kaching1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_al1g0")
+volume_db = -30.0
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="TimeElapsed" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

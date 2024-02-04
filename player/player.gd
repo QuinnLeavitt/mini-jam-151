@@ -3,8 +3,9 @@ class_name Player extends CharacterBody2D
 signal fire_breath(breathe_fire)
 signal died
 
+@export var damage = 50
 @export var fire_rate := 0.25
-@export var SPEED = 200.0
+@export var SPEED = 300.0
 
 @onready var mouth = $Mouth
 
@@ -27,11 +28,6 @@ func _physics_process(_delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	#var xDirection = Input.get_axis("left", "right")
-	#if xDirection:
-		#velocity.x = xDirection * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
 	$dragonAnimation.play()
 	var animationSpeed = $dragonAnimation.get_playing_speed()
 	if velocity.x == 0 && velocity.y == 0:
@@ -44,9 +40,11 @@ func breathe_fire():
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = mouth.global_position
 	projectile.rotation = rotation
+	projectile.damage = damage
 	emit_signal("fire_breath", projectile)
 
 func die():
 	if (is_alive==true && !is_invincible):
 		is_alive = false
 		emit_signal("died")
+		queue_free()

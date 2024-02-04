@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1m2fpc8bvcpk"]
+
+[ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/dragon.tscn" id="1_p7fl6"]
+[ext_resource type="Texture2D" uid="uid://blpcmavf8cwj2" path="res://assets/sprites/flying_dragon-gold.png" id="2_gfpwr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x5l2"]
+atlas = ExtResource("2_gfpwr")
+region = Rect2(0, 0, 144, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgjov"]
+atlas = ExtResource("2_gfpwr")
+region = Rect2(144, 0, 144, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v6i7"]
+atlas = ExtResource("2_gfpwr")
+region = Rect2(288, 0, 144, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3tal3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x5l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgjov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v6i7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="LegendaryDragon" instance=ExtResource("1_p7fl6")]
+speed = 25
+fire_rate = 5
+health = 400
+projectile_count = 10
+cost = 60
+
+[node name="CollisionShape2D" parent="." index="0"]
+scale = Vector2(8, 8)
+
+[node name="FodderDragAnim" parent="." index="1"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3tal3")
+frame_progress = 0.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0, -100)
+
+[node name="Mouth" parent="." index="3"]
+position = Vector2(0, 100)

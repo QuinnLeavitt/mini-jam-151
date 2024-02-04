@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca7uehn8wp01v"]
+
+[ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/dragon.tscn" id="1_wlbew"]
+[ext_resource type="Texture2D" uid="uid://cvskfntki0cq7" path="res://assets/sprites/flying_twin_headed_dragon-red.png" id="2_ydmqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54xej"]
+atlas = ExtResource("2_ydmqy")
+region = Rect2(0, 0, 144, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n865u"]
+atlas = ExtResource("2_ydmqy")
+region = Rect2(144, 0, 144, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2qv2"]
+atlas = ExtResource("2_ydmqy")
+region = Rect2(288, 0, 144, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j4bsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54xej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n865u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2qv2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TwinHeadedDragon" instance=ExtResource("1_wlbew")]
+speed = 150
+projectile_count = 2
+cost = 2
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 3)
+scale = Vector2(5, 5)
+
+[node name="FodderDragAnim" parent="." index="1"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_j4bsd")
+frame_progress = 0.0
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0, -52)
+
+[node name="Mouth" parent="." index="3"]
+position = Vector2(0, 50)
