@@ -1,10 +1,12 @@
 class_name Enemy extends Area2D
 
 signal fire_breath(breathe_fire)
-signal died(points)
+signal fire_sound()
+signal died(points, drag_pos)
 signal escaped(points)
 
 @export var speed = 250
+@export var damage = 20
 @export var fire_rate = 3
 @export var health = 50
 @export var projectile_count = 1
@@ -35,27 +37,29 @@ func breathe_fire():
 	var cumulative_degrees = 90
 	for p in projectile_count:
 		var projectile = projectile_scene.instantiate()
-		#print(projectile)
 		cumulative_degrees += component_degrees
 		projectile.global_position = mouth.global_position
 		projectile.rotation_degrees = cumulative_degrees
-		emit_signal("fire_breath", projectile)
+		projectile.damage = damage
+		projectile.source = self
 		cumulative_degrees += component_degrees
+		emit_signal("fire_breath", projectile)
+	emit_signal("fire_sound")
 
-func take_damage(damage):
-	health -= damage
+func take_damage(damage_taken):
+	health -= damage_taken
 	if health <= 0:
 		die()
 
 func die():
 	if (is_alive==true):
-		emit_signal("died", point_value)
+		emit_signal("died", point_value, self.global_position)
 		queue_free()
 
 func _on_body_entered(body):
 	if body is Player:
 		var player_body = body
-		player_body.die()
+		player_body.take_damage(damage)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	emit_signal("escaped", point_value)

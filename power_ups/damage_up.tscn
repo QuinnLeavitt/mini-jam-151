@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0po4vauwrq3b"]
+
+[ext_resource type="PackedScene" uid="uid://cvt5ssjhokfte" path="res://power_ups/power_up.tscn" id="1_nlg7g"]
+[ext_resource type="Texture2D" uid="uid://dkpsa3rvcfmjt" path="res://assets/sprites/damage_up_new.png" id="2_ndd4w"]
+
+[node name="DamageUp" instance=ExtResource("1_nlg7g")]
+power_up = 4
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1, 0.5)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-1, 0.5)
+scale = Vector2(0.777778, 0.722222)
+texture = ExtResource("2_ndd4w")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0, -30)

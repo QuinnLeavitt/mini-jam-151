@@ -26,7 +26,7 @@ anchor_bottom = 1.0
 offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Dragon's Folly"
+text = "Dragons' Folly"
 label_settings = SubResource("LabelSettings_lr1ul")
 autowrap_mode = 2
 

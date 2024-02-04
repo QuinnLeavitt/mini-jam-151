@@ -40,6 +40,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_amsbs")
 speed = 200
+damage = 25
+cost = 100
+point_value = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)

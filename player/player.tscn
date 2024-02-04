@@ -51,5 +51,5 @@ scale = Vector2(0.75, 0.75)
 shape = SubResource("CircleShape2D_74eb1")
 
 [node name="Mouth" type="Node2D" parent="." groups=["player"]]
-position = Vector2(0, -50)
+position = Vector2(0, -80)
 scale = Vector2(0.75, 0.75)

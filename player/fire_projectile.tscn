@@ -108,7 +108,7 @@ _data = {
 
 [node name="FireProjectile" type="Area2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 0
 script = ExtResource("1_mqyui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

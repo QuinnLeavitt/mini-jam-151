@@ -37,8 +37,8 @@ speed = 75
 fire_rate = 5
 health = 200
 projectile_count = 6
-cost = 30
-point_value = 500
+cost = 5000
+point_value = 1000
 
 [node name="CollisionShape2D" parent="." index="0"]
 scale = Vector2(6, 6)

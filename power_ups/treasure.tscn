@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://drgi5imq0kal6"]
+
+[ext_resource type="PackedScene" uid="uid://cvt5ssjhokfte" path="res://power_ups/power_up.tscn" id="1_kcgsf"]
+[ext_resource type="Texture2D" uid="uid://cohqhhpivi4ga" path="res://assets/sprites/treasure.png" id="2_ddmqt"]
+
+[node name="Treasure" instance=ExtResource("1_kcgsf")]
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ddmqt")

@@ -1,15 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://ba520dccxesr6"]
+[gd_scene load_steps=22 format=3 uid="uid://ba520dccxesr6"]
 
 [ext_resource type="Script" path="res://level/game.gd" id="1_u5gi3"]
 [ext_resource type="PackedScene" uid="uid://b2g1y055i5j2m" path="res://player/player.tscn" id="2_c2ihd"]
 [ext_resource type="AudioStream" uid="uid://blgibx1xcyoxx" path="res://assets/audio/flames_blow_hard_001.mp3" id="3_a1eus"]
 [ext_resource type="AudioStream" uid="uid://durfv0yx3j1ut" path="res://assets/audio/western_dragon_theme.wav" id="4_w204w"]
 [ext_resource type="PackedScene" uid="uid://beautbsqjsih4" path="res://enemies/dragon.tscn" id="5_vgjgg"]
+[ext_resource type="PackedScene" uid="uid://cg3ve6oegaui2" path="res://power_ups/1_up.tscn" id="6_7hfaw"]
 [ext_resource type="PackedScene" uid="uid://ca7uehn8wp01v" path="res://enemies/twin_headed_dragon.tscn" id="6_xgvpx"]
 [ext_resource type="PackedScene" uid="uid://b1m2fpc8bvcpk" path="res://enemies/legendary_dragon.tscn" id="7_hh3nv"]
+[ext_resource type="PackedScene" uid="uid://dvkbakkd3slrr" path="res://power_ups/fire_blast_up.tscn" id="7_uxtup"]
 [ext_resource type="PackedScene" uid="uid://fvtaawa5m43" path="res://enemies/elite_twin_headed_dragon.tscn" id="8_5k3te"]
+[ext_resource type="PackedScene" uid="uid://b3f4yt6q3y842" path="res://power_ups/health_up.tscn" id="8_ib7ok"]
 [ext_resource type="AudioStream" uid="uid://du8rqfa8v1l4y" path="res://assets/audio/ka_ching_001.mp3" id="9_al1g0"]
+[ext_resource type="PackedScene" uid="uid://b0po4vauwrq3b" path="res://power_ups/damage_up.tscn" id="9_d42jy"]
 [ext_resource type="PackedScene" uid="uid://bn4qch0egf0yh" path="res://ui/hud.tscn" id="10_42qrh"]
+[ext_resource type="PackedScene" uid="uid://drgi5imq0kal6" path="res://power_ups/treasure.tscn" id="10_qe2kn"]
 [ext_resource type="Script" path="res://ui/hud.gd" id="11_ddrs4"]
 [ext_resource type="PackedScene" uid="uid://cggvbxqdj6opk" path="res://ui/game_over_screen.tscn" id="12_nkkq4"]
 [ext_resource type="PackedScene" uid="uid://duyvryr6kqgwy" path="res://ui/pause_menu.tscn" id="13_2w0d3"]
@@ -20,6 +25,7 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u5gi3")
 enemy_scenes = Array[PackedScene]([ExtResource("5_vgjgg"), ExtResource("6_xgvpx"), ExtResource("8_5k3te"), ExtResource("7_hh3nv")])
+power_up_scenes = Array[PackedScene]([ExtResource("10_qe2kn"), ExtResource("6_7hfaw"), ExtResource("8_ib7ok"), ExtResource("7_uxtup"), ExtResource("9_d42jy")])
 
 [node name="Player" parent="." instance=ExtResource("2_c2ihd")]
 position = Vector2(256, 820)
@@ -45,7 +51,7 @@ volume_db = -30.0
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [node name="TimeElapsed" type="Timer" parent="."]
@@ -54,11 +60,8 @@ autostart = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("10_42qrh")]
-anchors_preset = 15
-offset_right = 0.0
+offset_left = 0.0
 offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("11_ddrs4")
 
 [node name="GameOverScreen" parent="UI" instance=ExtResource("12_nkkq4")]
@@ -71,9 +74,11 @@ visible = false
 stream = ExtResource("13_126yb")
 max_polyphony = 10
 
-[node name="EnemyDeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="StealGoldSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_p8pgd")
 
 [node name="Background" parent="." instance=ExtResource("16_bgly8")]
+
+[node name="PowerUpContainer" type="Node2D" parent="."]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

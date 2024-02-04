@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvt5ssjhokfte"]
+
+[ext_resource type="Script" path="res://power_ups/power_up.gd" id="1_neta5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajwey"]
+size = Vector2(42, 39)
+
+[node name="PowerUp" type="Area2D"]
+script = ExtResource("1_neta5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ajwey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="LifeSpan" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="LifeSpan" to="." method="_on_life_span_timeout"]
