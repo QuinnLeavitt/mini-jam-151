@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_scenes: Array[PackedScene] = []
 @export var power_up_scenes: Array[PackedScene] = []
-@export var power_up_chance = .2
+@export var power_up_chance = .15
 
 @onready var fire_blasts = $FireBlasts
 @onready var player = $Player
@@ -103,17 +103,18 @@ func _on_enemy_escaped(points):
 func _on_enemy_spawn_timer_timeout():
 	enemy_budget = gold - enemy_budget
 	enemy_scenes.reverse()
-	for enemy_scene in enemy_scenes:
-		var e = enemy_scene.instantiate()
-		if(enemy_budget >= e.cost):
-			e.global_position = Vector2(randf_range(50, 500), -50)
-			e.connect("fire_sound", _on_fire_sound)
-			e.connect("fire_breath", _on_fire_breathed)
-			e.connect("died", _on_enemy_died)
-			e.connect("escaped", _on_enemy_escaped)
-			enemy_container.add_child(e)
-			enemy_budget -= e.cost
-		else: e.queue_free()
+	while(enemy_budget > 100):
+		for enemy_scene in enemy_scenes:
+			var e = enemy_scene.instantiate()
+			if(enemy_budget >= e.cost):
+				e.global_position = Vector2(randf_range(50, 500), -50)
+				e.connect("fire_sound", _on_fire_sound)
+				e.connect("fire_breath", _on_fire_breathed)
+				e.connect("died", _on_enemy_died)
+				e.connect("escaped", _on_enemy_escaped)
+				enemy_container.add_child(e)
+				enemy_budget -= e.cost
+			else: e.queue_free()
 
 func spawn_power_up(pos):
 	var random_float = randf()
