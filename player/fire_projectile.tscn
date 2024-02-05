@@ -1,71 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b30hpwlo6scxc"]
+[gd_scene load_steps=8 format=3 uid="uid://b30hpwlo6scxc"]
 
 [ext_resource type="Script" path="res://player/fire_projectile.gd" id="1_mqyui"]
 [ext_resource type="Texture2D" uid="uid://yhponh5q6p2o" path="res://assets/sprites/Fire blast.png" id="2_wgjtj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkrop"]
 radius = 10.0499
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq6i0"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(1, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1p1qj"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(17, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5noip"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(33, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_brtnn"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(49, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ajwo"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(65, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bxpx7"]
-atlas = ExtResource("2_wgjtj")
-region = Rect2(81, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_53pt6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bq6i0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1p1qj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5noip")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_brtnn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ajwo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bxpx7")
-}],
-"loop": false,
-"name": &"beginning_fire",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ajwo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bxpx7")
-}],
-"loop": true,
-"name": &"end_fire",
-"speed": 5.0
-}]
 
 [sub_resource type="Animation" id="Animation_vsy5k"]
 resource_name = "beginning_fire"
@@ -100,9 +39,25 @@ tracks/0/keys = {
 "values": [4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_hekm5"]
+resource_name = "e_beginning_fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iow17"]
 _data = {
 "beginning_fire": SubResource("Animation_vsy5k"),
+"e_beginning_fire": SubResource("Animation_hekm5"),
 "end_fire": SubResource("Animation_w2kju")
 }
 
@@ -115,13 +70,6 @@ script = ExtResource("1_mqyui")
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_dkrop")
 
-[node name="FireAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
-rotation = 3.14159
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_53pt6")
-animation = &"end_fire"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_iow17")
@@ -131,7 +79,6 @@ libraries = {
 rotation = 3.14159
 texture = ExtResource("2_wgjtj")
 hframes = 6
-frame = 5
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 24)

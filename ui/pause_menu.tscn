@@ -39,6 +39,7 @@ layout_mode = 2
 text = "Resume"
 
 [node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Restart"
 

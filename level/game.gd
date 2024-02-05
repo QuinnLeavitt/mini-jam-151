@@ -2,7 +2,7 @@ extends Node2D
 
 @export var enemy_scenes: Array[PackedScene] = []
 @export var power_up_scenes: Array[PackedScene] = []
-@export var power_up_chance = .15
+@export var power_up_chance = .2
 
 @onready var fire_blasts = $FireBlasts
 @onready var player = $Player
@@ -127,17 +127,17 @@ func spawn_power_up(pos):
 		var p = power_up_scenes[1].instantiate()
 		p.global_position = pos
 		power_up_container.call_deferred("add_child", p)
-	elif gold > 1000 && random_float < .8:
+	elif gold > 1000 && random_float < .7:
 		#spawn health
 		var p = power_up_scenes[2].instantiate()
 		p.global_position = pos
 		power_up_container.call_deferred("add_child", p)
-	elif gold > 2000 && random_float < .95:
+	elif gold > 2000 && random_float < .85:
 		#spawn damage up
 		var p = power_up_scenes[4].instantiate()
 		p.global_position = pos
 		power_up_container.call_deferred("add_child", p)
-	elif gold > 4000 && random_float < .98:
+	elif gold > 2500 && random_float < 1:
 		#spawn additional fire blast
 		var p = power_up_scenes[3].instantiate()
 		p.global_position = pos

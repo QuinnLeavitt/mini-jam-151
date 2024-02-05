@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c75xfnjpuaeti" path="res://assets/sprites/flying_dragon-red.png" id="2_qa2i7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t42ry"]
-radius = 6.21289
+radius = 11.8345
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mjix"]
 atlas = ExtResource("2_qa2i7")

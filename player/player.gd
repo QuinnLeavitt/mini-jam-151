@@ -45,11 +45,12 @@ func _physics_process(_delta):
 	move_and_slide()
 	var screen_size = get_viewport_rect().size
 
-	if global_position.x < 0:
-		global_position.x = screen_size.x
-	elif global_position.x > screen_size.x:
-		global_position.x = 0
-	global_position.y = clamp(global_position.y, 0,  screen_size.y)
+	#if global_position.x < 0:
+		#global_position.x = screen_size.x
+	#elif global_position.x > screen_size.x:
+		#global_position.x = 0
+	#global_position.y = clamp(global_position.y, 0,  screen_size.y)
+	global_position = global_position.clamp(Vector2.ZERO, screen_size)
 func breathe_fire():
 	var component_degrees = (180/projectile_count)/2
 	var cumulative_degrees = 270
